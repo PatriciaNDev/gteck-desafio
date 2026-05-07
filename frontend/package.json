@@ -9,7 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.32"
+    "@primevue/themes": "^4.5.4",
+    "axios": "^1.16.0",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.5.5",
+    "vue": "^3.5.32",
+    "vue-router": "^5.0.6"
   },
   "devDependencies": {
     "@types/node": "^24.12.2",
