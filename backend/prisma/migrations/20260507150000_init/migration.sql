@@ -9,11 +9,11 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "campaigns" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "nome" TEXT NOT NULL,
-    "custo" REAL NOT NULL,
-    "receita" REAL NOT NULL,
-    "taxas" REAL DEFAULT 0,
-    "despesas" REAL DEFAULT 0
+    "name" TEXT NOT NULL,
+    "cost" REAL NOT NULL,
+    "revenue" REAL NOT NULL,
+    "tax" REAL DEFAULT 0,
+    "expense" REAL DEFAULT 0
 );
 
 -- CreateIndex

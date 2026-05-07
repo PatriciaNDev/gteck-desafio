@@ -18,11 +18,11 @@ model User {
 
 model Campaign {
   id       String @id @default(uuid())
-  nome     String
-  custo    Float
-  receita  Float
-  taxas    Float? @default(0)
-  despesas Float? @default(0)
+  name     String
+  cost     Float
+  revenue  Float
+  tax      Float? @default(0)
+  expense  Float? @default(0)
 
   @@map("campaigns")
 }

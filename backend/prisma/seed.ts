@@ -18,16 +18,16 @@ async function main() {
 
     await prisma.campaign.createMany({
     data: [
-      { nome: 'Black Friday 2025', custo: 5000, receita: 15000, taxas: 500, despesas: 200 },
-      { nome: 'Natal Promocional', custo: 3000, receita: 12000, taxas: 300, despesas: 150 },
-      { nome: 'Queima de Estoque', custo: 1000, receita: 800 },
-      { nome: 'Lançamento Coleção Outono', custo: 2500, receita: 7000, taxas: 200 },
-      { nome: 'Google Ads - Institucional', custo: 500, receita: 600 },
-      { nome: 'Influenciadores Verão', custo: 8000, receita: 25000, taxas: 800, despesas: 1000 },
-      { nome: 'Retargeting Facebook', custo: 1200, receita: 4000, despesas: 50 },
-      { nome: 'E-mail Marketing Semanal', custo: 100, receita: 1500 },
-      { nome: 'Sorteio Instagram', custo: 400, receita: 0 },
-      { nome: 'Youtube Ads - Vídeo 1', custo: 2000, receita: 5500, taxas: 150, despesas: 80 },
+      { name: 'Black Friday 2025', cost: 5000, revenue: 15000, tax: 500, expense: 200 },
+      { name: 'Natal Promocional', cost: 3000, revenue: 12000, tax: 300, expense: 150 },
+      { name: 'Queima de Estoque', cost: 1000, revenue: 800 },
+      { name: 'Lançamento Coleção Outono', cost: 2500, revenue: 7000, tax: 200 },
+      { name: 'Google Ads - Institucional', cost: 500, revenue: 600 },
+      { name: 'Influenciadores Verão', cost: 8000, revenue: 25000, tax: 800, expense: 1000 },
+      { name: 'Retargeting Facebook', cost: 1200, revenue: 4000, expense: 50 },
+      { name: 'E-mail Marketing Semanal', cost: 100, revenue: 1500 },
+      { name: 'Sorteio Instagram', cost: 400, revenue: 0 },
+      { name: 'Youtube Ads - Vídeo 1', cost: 2000, revenue: 5500, tax: 150, expense: 80 },
     ]
   })
 
