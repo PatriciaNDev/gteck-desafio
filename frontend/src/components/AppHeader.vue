@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import Button from 'primevue/button';
+import { AUTH_TOKEN_KEY } from '../services/api';
 
 defineProps<{
   minimal?: boolean
@@ -9,7 +10,7 @@ defineProps<{
 const router = useRouter();
 
 const logout = () => {
-  localStorage.removeItem('gteck_token');
+  localStorage.removeItem(AUTH_TOKEN_KEY);
   router.push('/login');
 };
 </script>
@@ -23,7 +24,6 @@ const logout = () => {
 
       <nav v-if="!minimal" class="nav-links">
         <router-link to="/">Dashboard</router-link>
-        <router-link to="/campanhas">Campanhas</router-link>
         <Button 
           label="Sair" 
           icon="pi pi-sign-out" 

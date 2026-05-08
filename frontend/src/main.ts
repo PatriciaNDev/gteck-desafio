@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
+import 'primeicons/primeicons.css'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import { definePreset } from '@primevue/themes';
+import ConfirmationService from 'primevue/confirmationservice';
 
 import App from './App.vue'
 import router from './router'
-
-const app = createApp(App)
+import { api, AUTH_TOKEN_KEY } from './services/api'
 
 const GteckPreset = definePreset(Aura, {
     semantic: {
@@ -26,7 +27,34 @@ const GteckPreset = definePreset(Aura, {
     }
 });
 
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            const url = error.config?.url ?? '';
+            
+            const isAuthCall = ['/auth/login', '/auth/register'].some(path => url.includes(path));
+            
+            if (!isAuthCall) {
+                localStorage.removeItem(AUTH_TOKEN_KEY);
+                const currentRouteName = String(router.currentRoute.value.name);
+                
+                if (!['login', 'register'].includes(currentRouteName)) {
+                    router.push({
+                        name: 'login',
+                        query: { redirect: router.currentRoute.value.fullPath },
+                    });
+                }
+            }
+        }
+        return Promise.reject(error);
+    }
+);
+
+const app = createApp(App)
+
 app.use(router)
+app.use(ConfirmationService)
 app.use(PrimeVue, {
     theme: {
         preset: GteckPreset,

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+import { AUTH_TOKEN_KEY } from '../services/api';
 import { api } from '../services/api';
 
 import Card from 'primevue/card';
@@ -10,6 +11,7 @@ import Button from 'primevue/button';
 import Message from 'primevue/message';
 
 const router = useRouter();
+const route = useRoute();
 const email = ref('');
 const password = ref('');
 const errorMessage = ref('');
@@ -25,8 +27,13 @@ const handleLogin = async () => {
             password: password.value,
         });
         
-        localStorage.setItem('gteck_token', response.data.token);
-        router.push('/');
+        localStorage.setItem(AUTH_TOKEN_KEY, response.data.token);
+        const redirect = route.query.redirect;
+        const safePath =
+            typeof redirect === 'string' && redirect.startsWith('/') && !redirect.startsWith('//')
+                ? redirect
+                : '/';
+        router.push(safePath);
     } catch (error: any) {
         errorMessage.value = error.response?.data?.error ?? 'Erro ao conectar com o servidor.';
     } finally {
@@ -75,13 +82,6 @@ const handleLogin = async () => {
   align-items: center;
   min-height: 100vh;
   padding: 1rem;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
 }
 
 .form-layout {
